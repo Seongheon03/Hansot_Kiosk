@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hansot_Kiosk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        Left="450"
+        Top="0"
+        Height="830"
+        Width="600"
+        Title="MainWindow">
     <Grid>
+        <Image x:Name="eventImg" Stretch="Fill"/>
         
+        <Button x:Name="nextBtn" 
+                Content=">" 
+                FontSize="20" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,20,0"
+                Height="40"
+                Width="40"
+                Click="nextBtn_Click"/>
+        
+        <Button x:Name="beforeBtn"
+                Content="←"
+                FontSize="20"
+                HorizontalAlignment="Left"
+                Margin="20,0,0,0"
+                Height="40"
+                Width="40"
+                Click="beforeBtn_Click"/>
+
+        <Button x:Name="orderBtn" 
+                FontSize="20"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,20"
+                Height="60"
+                Width="120"
+                Click="orderBtn_Click">
+            <ContentControl>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\\Users\\user\\Desktop\\한솥\\주문.png" Width="30"/>
+                    <TextBlock Text="주문하기" 
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="5,0,0,0"/>
+                </StackPanel>
+            </ContentControl>
+        </Button>
     </Grid>
-</Window>
+</Window> 

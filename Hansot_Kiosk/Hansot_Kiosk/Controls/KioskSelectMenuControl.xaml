@@ -9,7 +9,7 @@
     <Grid Margin="1,0,-1,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"/>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.2*"/> 
             <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
@@ -23,9 +23,7 @@
                 <Button Width="70"/>
                 <Button Width="70"/>
             </StackPanel>
-            
         </Grid>
-
         <TextBlock Grid.Column="1" Background="Black"/>
     </Grid>
 </UserControl>

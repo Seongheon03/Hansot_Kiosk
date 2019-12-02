@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:Hansot_Kiosk"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ControlTemplate TargetType="Button" x:Key="round">
+            <Border CornerRadius="5" Background="Yellow">
+                <ContentPresenter HorizontalAlignment="Center" 
+                                  VerticalAlignment="Bottom" 
+                                  Margin="0,0,0,10"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="Height" Value="110"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Template" Value="{StaticResource round}"/>
+        </Style>
     </Application.Resources>
 </Application>
