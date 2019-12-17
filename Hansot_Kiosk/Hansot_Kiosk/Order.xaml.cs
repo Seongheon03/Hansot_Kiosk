@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hansot_Kiosk.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,23 @@ namespace Hansot_Kiosk
         public Order()
         {
             InitializeComponent();
+            this.DataContext = new MenuViewModel();
+        }
+        private void bestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("인기 메뉴");
         }
 
-        private void endBtn_Click(object sender, RoutedEventArgs e)
+        private void orderBtn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("주문이 완료되었습니다");
+            new MainWindow().Show();
+            this.Close();
+        }
+
+        private void cancleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("주문이 취소되었습니다");
             new MainWindow().Show();
             this.Close();
         }

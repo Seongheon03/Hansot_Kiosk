@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\MenuViewModel.cs" />
     <Page Include="Controls\KioskSelectMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +87,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Food.cs" />
     <Compile Include="Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
@@ -115,8 +117,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
