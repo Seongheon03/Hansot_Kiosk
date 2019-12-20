@@ -26,25 +26,25 @@ namespace Hansot_Kiosk
         {
             InitializeComponent();
 
-            images[0] = "C:\\Users\\user\\Desktop\\한솥\\한솥이벤트1.png";
-            images[1] = "C:\\Users\\user\\Desktop\\한솥\\한솥이벤트2.jpg";
-            images[2] = "C:\\Users\\user\\Desktop\\한솥\\한솥이벤트3.jpg";
-            images[3] = "C:\\Users\\user\\Desktop\\한솥\\한솥이벤트4.jpg";
-            eventImg.Source = new BitmapImage(new Uri(images[0]));
+            images[0] = "\\Resource\\한솥이벤트1.png";
+            images[1] = "\\Resource\\한솥이벤트2.jpg";
+            images[2] = "\\Resource\\한솥이벤트3.jpg";
+            images[3] = "\\Resource\\한솥이벤트4.jpg";
+            eventImg.Source = new BitmapImage(new Uri(@images[0], UriKind.Relative));
         }
 
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
             if (++imagesIdx == 4)
                 imagesIdx = 0;
-            eventImg.Source = new BitmapImage(new Uri(images[imagesIdx]));
+            eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 
         private void beforeBtn_Click(object sender, RoutedEventArgs e)
         {
             if (--imagesIdx == -1)
                 imagesIdx = 3;
-            eventImg.Source = new BitmapImage(new Uri(images[imagesIdx]));
+            eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 
         private void orderBtn_Click(object sender, RoutedEventArgs e)

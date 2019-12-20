@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hansot_Kiosk.Model
 {
-    class Food : INotifyPropertyChanged
+    public class Food : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -39,7 +39,7 @@ namespace Hansot_Kiosk.Model
             }
         }
 
-        private int _count;
+        private int _count = 0;
         public int Count
         {
             get

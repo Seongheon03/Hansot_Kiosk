@@ -25,8 +25,7 @@
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="0.55*"/>
-            <RowDefinition Height="0.02*"/>
-            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.17*"/>
             <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
 
@@ -64,7 +63,7 @@
                         x:Name="dosilakBtn"
                         Foreground="Brown"
                         FontSize="15"
-                        Style="{StaticResource RoundButton}" 
+                        Style="{StaticResource RoundButton}"
                         Margin="7,0,0,0"/>
                 <Button Content="컵밥"
                         x:Name="cubbabBtn"
@@ -82,45 +81,54 @@
                         x:Name="sideBtn" 
                         Foreground="Brown"
                         FontSize="15"
-                        Style="{StaticResource RoundButton}" 
+                        Style="{StaticResource RoundButton}"
                         Margin="7,0,0,0"/>
                 <Button Content="음료" 
                         x:Name="drinkBtn"
                         Foreground="Brown"
                         FontSize="15"
-                        Style="{StaticResource RoundButton}" 
+                        Style="{StaticResource RoundButton}"
                         Margin="7,0,0,0"/>
             </StackPanel>
         </Grid>
         
         <Grid Grid.Row="2">
-            <ListView ItemsSource="{Binding FoodItems}">
+            <ListView x:Name="list" ItemsSource="{Binding FoodItems}" SelectionChanged="ListView_SelectionChanged"
+                      MouseDown="ListView_MouseDown">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding ImageUrl}"
+                                        Height="100"
+                                        Width="120"/>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Price}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="3" Background="Gray">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.22*"/>
-                <ColumnDefinition Width="0.28*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <TextBlock Text="메뉴" HorizontalAlignment="Center"/>
-            </Grid>
-            <Grid Grid.Column="1">
-                <TextBlock Text="수량" HorizontalAlignment="Center"/>
-            </Grid>
-            <Grid Grid.Column="2">
-                <TextBlock Text="가격" HorizontalAlignment="Center"/>
-            </Grid>
+        <Grid Grid.Row="3" Background="LightGray">
+            <ListView ItemsSource="{Binding OrderedFoodItems}" VerticalContentAlignment="Center">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="메뉴" Width="275" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="수량" Width="150" DisplayMemberBinding="{Binding Count}"/>
+                            <GridViewColumn Header="가격" Width="150" DisplayMemberBinding="{Binding Price}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <Grid Grid.Row="4" Background="LightGray">
-            <ScrollViewer>
-            </ScrollViewer>
-        </Grid>
-
-        <Grid Grid.Row="5" Background="LightGray">
             <TextBlock Text="결제금액 : "
                        Background="White"
                        Width="250"

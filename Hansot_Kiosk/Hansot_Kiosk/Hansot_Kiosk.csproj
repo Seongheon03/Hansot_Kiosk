@@ -117,6 +117,63 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\갈비 닭강정.png" />
+    <Resource Include="Resource\갈비치킨마요.png" />
+    <Resource Include="Resource\개나리%28순살 고등어 간장구이%29.png" />
+    <Resource Include="Resource\계란말이.png" />
+    <Resource Include="Resource\계란후라이.png" />
+    <Resource Include="Resource\고기고기.png" />
+    <Resource Include="Resource\국화.png" />
+    <Resource Include="Resource\나시고랭.png" />
+    <Resource Include="Resource\돈까스 덮밥.png" />
+    <Resource Include="Resource\돈까스 카레.png" />
+    <Resource Include="Resource\돈까스도련님.png" />
+    <Resource Include="Resource\돈까스도련님고기고기.png" />
+    <Resource Include="Resource\돈치고기고기.png" />
+    <Resource Include="Resource\돈치마요.png" />
+    <Resource Include="Resource\동백.png" />
+    <Resource Include="Resource\매화%28순살 고등어데리야끼%29.png" />
+    <Resource Include="Resource\매화%28치킨, 연어구이%29.png" />
+    <Resource Include="Resource\메가고기고기.png" />
+    <Resource Include="Resource\메가치킨마요.png" />
+    <Resource Include="Resource\메가치킨제육.png" />
+    <Resource Include="Resource\묵은지 김치찌개.png" />
+    <Resource Include="Resource\반찬 카레.png" />
+    <Resource Include="Resource\불닭비빔밥.png" />
+    <Resource Include="Resource\빅치킨마요.png" />
+    <Resource Include="Resource\새우돈까스 덮밥.png" />
+    <Resource Include="Resource\새치고기고기.png" />
+    <Resource Include="Resource\생선까스도련님.png" />
+    <Resource Include="Resource\생선까스도련님고기고기.png" />
+    <Resource Include="Resource\소고기 육개장.png" />
+    <Resource Include="Resource\소불고기 감초고추장 비빔밥.png" />
+    <Resource Include="Resource\소불고기 철반볶음밥.png" />
+    <Resource Include="Resource\오리지널 찹쌀탕수육.png" />
+    <Resource Include="Resource\왕치킨마요.png" />
+    <Resource Include="Resource\왕카레돈까스덮밥.png" />
+    <Resource Include="Resource\웰치스.jpg" />
+    <Resource Include="Resource\제육볶음.png" />
+    <Resource Include="Resource\주문.png" />
+    <Resource Include="Resource\진달래.png" />
+    <Resource Include="Resource\참치 샐러드마요.png" />
+    <Resource Include="Resource\참치마요.png" />
+    <Resource Include="Resource\치즈.png" />
+    <Resource Include="Resource\치즈불닭비빔밥.png" />
+    <Resource Include="Resource\치킨 BOX.png" />
+    <Resource Include="Resource\치킨 샐러드마요.png" />
+    <Resource Include="Resource\치킨마요.png" />
+    <Resource Include="Resource\치킨제육.png" />
+    <Resource Include="Resource\칠리 찹쌀탕수육도련님.png" />
+    <Resource Include="Resource\코카콜라.jpg" />
+    <Resource Include="Resource\탕수육도련님고기고기.png" />
+    <Resource Include="Resource\한솥 철판볶음밥.png" />
+    <Resource Include="Resource\한솥밥.png" />
+    <Resource Include="Resource\한솥이벤트1.png" />
+    <Resource Include="Resource\한솥이벤트2.jpg" />
+    <Resource Include="Resource\한솥이벤트3.jpg" />
+    <Resource Include="Resource\한솥이벤트4.jpg" />
+    <Resource Include="Resource\현미밥.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

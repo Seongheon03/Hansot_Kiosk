@@ -1,4 +1,5 @@
-﻿using Hansot_Kiosk.ViewModel;
+﻿using Hansot_Kiosk.Model;
+using Hansot_Kiosk.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,11 @@ namespace Hansot_Kiosk
     /// </summary>
     public partial class Order : Window
     {
+        int result = 0;
         public Order()
         {
             InitializeComponent();
-            this.DataContext = new MenuViewModel();
+            this.DataContext = App.menuViewModel;
         }
         private void bestBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -40,8 +42,28 @@ namespace Hansot_Kiosk
         private void cancleBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("주문이 취소되었습니다");
+            App.menuViewModel.OrderedFoodItems.Clear();
             new MainWindow().Show();
             this.Close();
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Food selectedFood = (Food)list.SelectedItem;
+            if(selectedFood.Count > 0)
+            {
+                MessageBox.Show("아래 수량을 조정해주세요.");
+                return;
+            }
+            selectedFood.Count++;
+            App.menuViewModel.OrderedFoodItems.Add(selectedFood);
+            result += selectedFood.Price;
+            total.Text = Convert.ToString(result);
+        }
+
+        private void ListView_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
