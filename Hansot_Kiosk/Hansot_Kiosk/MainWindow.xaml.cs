@@ -36,14 +36,34 @@ namespace Hansot_Kiosk
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
             if (++imagesIdx == 4)
+            {
                 imagesIdx = 0;
+                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
+            }
+            else if (imagesIdx == 1)
+                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
+            else if (imagesIdx == 2)
+                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
+            else if (imagesIdx == 3)
+                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
+
             eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 
         private void beforeBtn_Click(object sender, RoutedEventArgs e)
         {
             if (--imagesIdx == -1)
+            {
                 imagesIdx = 3;
+                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
+            }
+            else if (imagesIdx == 2)
+                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
+            else if(imagesIdx == 1)
+                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
+            else if(imagesIdx == 0)
+                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
+
             eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 

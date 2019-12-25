@@ -13,8 +13,9 @@
         Title="MainWindow">
     <Grid>
         <Image x:Name="eventImg" Stretch="Fill"/>
-        
+
         <Button x:Name="nextBtn" 
+                Style="{StaticResource CircleButton}"
                 Content=">" 
                 FontSize="20" 
                 HorizontalAlignment="Right" 
@@ -22,8 +23,9 @@
                 Height="40"
                 Width="40"
                 Click="nextBtn_Click"/>
-        
+
         <Button x:Name="beforeBtn"
+                Style="{StaticResource CircleButton}"
                 Content="←"
                 FontSize="20"
                 HorizontalAlignment="Left"
@@ -32,22 +34,21 @@
                 Width="40"
                 Click="beforeBtn_Click"/>
 
-        <Button x:Name="orderBtn" 
+        <Button x:Name="orderBtn"
+                Style="{StaticResource ButtonIndex0}"
                 FontSize="20"
                 VerticalAlignment="Bottom"
                 Margin="0,0,0,20"
                 Height="60"
                 Width="120"
                 Click="orderBtn_Click">
-            <ContentControl>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="C:\\Users\\user\\Desktop\\한솥\\주문.png" Width="30"/>
-                    <TextBlock Text="주문하기" 
+            <StackPanel Orientation="Horizontal">
+                <Image Source="\Resource\주문.png" Width="30"/>
+                <TextBlock Text="주문하기" 
                                VerticalAlignment="Center"
                                FontSize="18"
                                Margin="5,0,0,0"/>
-                </StackPanel>
-            </ContentControl>
+            </StackPanel>
         </Button>
     </Grid>
 </Window> 

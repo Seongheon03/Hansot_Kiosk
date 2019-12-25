@@ -13,11 +13,7 @@
         Title="Order">
 
     <Window.Resources>
-        <Style TargetType="Button" x:Key="RoundButton">
-            <Setter Property="Template" Value="{StaticResource round}"/>
-            <Setter Property="Height" Value="110"/>
-            <Setter Property="Width" Value="90"/>
-        </Style>
+        
     </Window.Resources>
     
     <Grid>
@@ -28,7 +24,6 @@
             <RowDefinition Height="0.17*"/>
             <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0" Background="Yellow">
             <TextBlock Text="한"
                        Background="Orange"
@@ -52,49 +47,93 @@
         
         <Grid Grid.Row="1">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="인기"
-                        x:Name="bestBtn"
-                        Foreground="Brown"
-                        FontSize="15"
+                <Button x:Name="bestBtn"
                         Style="{StaticResource RoundButton}"
                         Margin="6,0,0,0"
-                        Click="bestBtn_Click"/>
-                <Button Content="도시락" 
-                        x:Name="dosilakBtn"
-                        Foreground="Brown"
-                        FontSize="15"
+                        Click="bestBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\인기.png"
+                               Width="80"
+                               Margin="0,5,0,0"/>
+                        <TextBlock Text="인기"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="dosilakBtn"
                         Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"/>
-                <Button Content="컵밥"
-                        x:Name="cubbabBtn"
-                        Foreground="Brown"
-                        FontSize="15"
+                        Margin="7,0,0,0"
+                        Click="dosilakBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\도시락.png"
+                               Width="80"
+                               Margin="0,5,0,0"/>
+                        <TextBlock Text="도시락"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="cubbabBtn"
                         Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"/>
-                <Button Content="반찬"
-                        x:Name="sidedishBtn"
-                        Foreground="Brown"
-                        FontSize="15"
+                        Margin="7,0,0,0"
+                        Click="cubbabBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\컵밥.png"
+                               Width="80"
+                               Margin="0,5,0,0"/>
+                        <TextBlock Text="컵밥"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="sidedishBtn"
                         Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"/>
-                <Button Content="사이드"
-                        x:Name="sideBtn" 
-                        Foreground="Brown"
-                        FontSize="15"
+                        Margin="7,0,0,0"
+                        Click="sidedishBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\반찬.png"
+                               Width="75"
+                               Margin="0,8,0,0"/>
+                        <TextBlock Text="반찬"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="sideBtn" 
                         Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"/>
-                <Button Content="음료" 
-                        x:Name="drinkBtn"
-                        Foreground="Brown"
-                        FontSize="15"
+                        Margin="7,0,0,0"
+                        Click="sideBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\사이드.png"
+                               Width="75"
+                               Margin="0,8,0,0"/>
+                        <TextBlock Text="사이드"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="drinkBtn"
                         Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"/>
+                        Margin="7,0,0,0"
+                        Click="drinkBtn_Click">
+                    <StackPanel>
+                        <Image Source="\Resource\음료.png"
+                               Width="75"
+                               Margin="0,8,0,0"/>
+                        <TextBlock Text="음료"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
-        
+
         <Grid Grid.Row="2">
-            <ListView x:Name="list" ItemsSource="{Binding FoodItems}" SelectionChanged="ListView_SelectionChanged"
-                      MouseDown="ListView_MouseDown">
+            <ListView x:Name="list"
+                      ItemsSource="{Binding BestItems}"
+                      SelectionChanged="list_SelectionChanged"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Center">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -103,9 +142,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Image Source="{Binding ImageUrl}"
-                                        Height="100"
-                                        Width="120"/>
+                            <Image Source="{Binding ImageUrl}" Height="100" Width="130"/>
                             <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
                             <TextBlock Text="{Binding Price}" HorizontalAlignment="Center"/>
                         </StackPanel>
@@ -115,14 +152,46 @@
         </Grid>
 
         <Grid Grid.Row="3" Background="LightGray">
-            <ListView ItemsSource="{Binding OrderedFoodItems}" VerticalContentAlignment="Center">
+            <ListView x:Name="shoppingList" ItemsSource="{Binding OrderedFoodItems}" Background="LightGray">
                 <ListView.View>
                     <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Header="메뉴" Width="275" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Header="수량" Width="150" DisplayMemberBinding="{Binding Count}"/>
-                            <GridViewColumn Header="가격" Width="150" DisplayMemberBinding="{Binding Price}"/>
-                        </GridView.Columns>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Header="메뉴" Width="275" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="수량" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Count}"/>
+                                        <Button Content="+" x:Name="addBtn"
+                                                Style="{StaticResource CircleButton}"
+                                                Margin="60,0,0,0"
+                                                Click="addBtn_Click"/>
+                                        <Button Content="-" x:Name="subBtn"
+                                                Style="{StaticResource CircleButton}"
+                                                Margin="110,0,0,0"
+                                                Width="20"
+                                                Click="subBtn_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="가격" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Price}"/>
+                                        <Button Content="X" x:Name="delBtn"
+                                                Style="{StaticResource CircleButton}"
+                                                Margin="110,0,0,0"
+                                                Click="delBtn_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -138,28 +207,44 @@
                        FontSize="20"
                        Margin="10,0,0,0"
                        Padding="10,10,0,0"/>
-            <TextBlock Text="0"
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="0"
                        x:Name="total"
                        FontSize="25"
                        VerticalAlignment="Center"
                        Margin="120,0,0,0"/>
+                <TextBlock Text="원"
+                           FontSize="25"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0"/>
+            </StackPanel>
+
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="주문취소"
-                        x:Name="cancleBtn"
+                <Button x:Name="cancleBtn"
+                        Style="{StaticResource BasicButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Height="50"
                         Width="150"
                         Margin="260,0,0,0"
-                        Click="cancleBtn_Click"/>
-                <Button Content="주문하기"
-                        x:Name="orderBtn"
+                        Click="cancleBtn_Click">
+                    <TextBlock Text="주문취소"
+                               VerticalAlignment="Center"
+                               FontSize="15"/>
+                </Button>
+                <Button x:Name="orderBtn"
+                        Style="{StaticResource BasicButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Height="50"
                         Width="150"
                         Margin="10,0,0,0"
-                        Click="orderBtn_Click"/>
+                        Click="orderBtn_Click">
+                    <TextBlock Text="주문완료"
+                               VerticalAlignment="Center"
+                               FontSize="15"/>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

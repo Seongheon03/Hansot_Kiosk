@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hansot_Kiosk
 {
-    /// <summary>
-    /// Order.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class Order : Window
     {
         int result = 0;
@@ -29,12 +26,43 @@ namespace Hansot_Kiosk
         }
         private void bestBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("인기 메뉴");
+            list.ItemsSource = App.menuViewModel.BestItems;
         }
 
+        private void dosilakBtn_Click(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = App.menuViewModel.DosilakItems;
+        }
+
+        private void cubbabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = App.menuViewModel.CubbabItems;
+        }
+        private void sidedishBtn_Click(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = App.menuViewModel.SidedishItems;
+        }
+        private void sideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = App.menuViewModel.SideItems;
+        }
+
+        private void drinkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            list.ItemsSource = App.menuViewModel.DrinkItems;
+        }
         private void orderBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("주문이 완료되었습니다");
+
+
+
+            foreach (Food item in App.menuViewModel.OrderedFoodItems)
+            {
+                item.Count = 0;
+            }
+
+            App.menuViewModel.OrderedFoodItems.Clear();
             new MainWindow().Show();
             this.Close();
         }
@@ -42,28 +70,73 @@ namespace Hansot_Kiosk
         private void cancleBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("주문이 취소되었습니다");
+
+            foreach (Food item in App.menuViewModel.OrderedFoodItems)
+            {
+                item.Count = 0;
+            }
+
             App.menuViewModel.OrderedFoodItems.Clear();
             new MainWindow().Show();
             this.Close();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Food selectedFood = (Food)list.SelectedItem;
-            if(selectedFood.Count > 0)
-            {
-                MessageBox.Show("아래 수량을 조정해주세요.");
+
+            if (selectedFood == null)
                 return;
+
+            foreach(Food list in shoppingList.Items)
+            {
+                if (selectedFood.Name.Equals(list.Name))
+                {
+                    MessageBox.Show("아래 수량을 조정해주세요.");
+                    return;
+                }
             }
+
             selectedFood.Count++;
             App.menuViewModel.OrderedFoodItems.Add(selectedFood);
-            result += selectedFood.Price;
-            total.Text = Convert.ToString(result);
+            total.Text = Convert.ToString(result += selectedFood.Price);
         }
 
-        private void ListView_MouseDown(object sender, MouseButtonEventArgs e)
+        private void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            Food selectedFood = ((ListViewItem)shoppingList.ContainerFromElement(sender as Button)).Content as Food;
+            
+            selectedFood.Count++;
+            total.Text = Convert.ToString(result += selectedFood.Price);
+        }
 
+        private void subBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Food selectedFood = ((ListViewItem)shoppingList.ContainerFromElement(sender as Button)).Content as Food;
+
+            if(selectedFood.Count == 1)
+            {
+                delBtn_Click(sender, e);
+                return;
+            }
+
+            else 
+                selectedFood.Count--;
+
+            total.Text = Convert.ToString(result -= selectedFood.Price);
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Food selectedFood = ((ListViewItem)shoppingList.ContainerFromElement(sender as Button)).Content as Food;
+
+            while(selectedFood.Count != 0)
+            {
+                total.Text = Convert.ToString(result -= selectedFood.Price);
+                selectedFood.Count--;
+            }
+
+            App.menuViewModel.OrderedFoodItems.Remove(selectedFood);
         }
     }
 }

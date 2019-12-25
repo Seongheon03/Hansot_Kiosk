@@ -4,12 +4,10 @@
              xmlns:local="clr-namespace:Hansot_Kiosk"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ControlTemplate TargetType="Button" x:Key="round">
-            <Border CornerRadius="5" Background="Yellow">
-                <ContentPresenter HorizontalAlignment="Center" 
-                                  VerticalAlignment="Bottom" 
-                                  Margin="0,0,0,10"/>
-            </Border>
-        </ControlTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
