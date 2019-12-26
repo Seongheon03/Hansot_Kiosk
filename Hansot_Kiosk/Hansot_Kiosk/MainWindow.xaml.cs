@@ -35,39 +35,48 @@ namespace Hansot_Kiosk
 
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (++imagesIdx == 4)
-            {
-                imagesIdx = 0;
-                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
-            }
-            else if (imagesIdx == 1)
-                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
-            else if (imagesIdx == 2)
-                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
-            else if (imagesIdx == 3)
-                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
+            imagesIdx = changeButtonStyle(++imagesIdx);
 
             eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 
         private void beforeBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (--imagesIdx == -1)
-            {
-                imagesIdx = 3;
-                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
-            }
-            else if (imagesIdx == 2)
-                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
-            else if(imagesIdx == 1)
-                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
-            else if(imagesIdx == 0)
-                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
+            imagesIdx = changeButtonStyle(--imagesIdx);
 
             eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
         }
 
         private void orderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            switchScreen();
+        }
+
+        private int changeButtonStyle(int index)
+        {
+            if (index == 1)
+            {
+                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
+                return 1;
+            }
+            else if (index == 2)
+            {
+                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
+                return 2;
+            }
+            else if (index == -1 || index == 3)
+            {
+                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
+                return 3;
+            }
+            else
+            {
+                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
+                return 0;
+            }
+        }
+
+        private void switchScreen()
         {
             new Order().Show();
             this.Close();

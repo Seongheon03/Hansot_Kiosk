@@ -51,35 +51,6 @@ namespace Hansot_Kiosk
         {
             list.ItemsSource = App.menuViewModel.DrinkItems;
         }
-        private void orderBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("주문이 완료되었습니다");
-
-
-
-            foreach (Food item in App.menuViewModel.OrderedFoodItems)
-            {
-                item.Count = 0;
-            }
-
-            App.menuViewModel.OrderedFoodItems.Clear();
-            new MainWindow().Show();
-            this.Close();
-        }
-
-        private void cancleBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("주문이 취소되었습니다");
-
-            foreach (Food item in App.menuViewModel.OrderedFoodItems)
-            {
-                item.Count = 0;
-            }
-
-            App.menuViewModel.OrderedFoodItems.Clear();
-            new MainWindow().Show();
-            this.Close();
-        }
 
         private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -88,7 +59,7 @@ namespace Hansot_Kiosk
             if (selectedFood == null)
                 return;
 
-            foreach(Food list in shoppingList.Items)
+            foreach (Food list in shoppingList.Items)
             {
                 if (selectedFood.Name.Equals(list.Name))
                 {
@@ -137,6 +108,32 @@ namespace Hansot_Kiosk
             }
 
             App.menuViewModel.OrderedFoodItems.Remove(selectedFood);
+        }
+
+        private void orderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("주문이 완료되었습니다");
+
+            switchScreen();
+        }
+
+        private void cancleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("주문이 취소되었습니다");
+
+            switchScreen();
+        }
+
+        private void switchScreen()
+        {
+            foreach (Food item in App.menuViewModel.OrderedFoodItems)
+            {
+                item.Count = 0;
+            }
+
+            App.menuViewModel.OrderedFoodItems.Clear();
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
