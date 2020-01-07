@@ -10,7 +10,8 @@
         Top="0"
         Height="830"
         Width="600"
-        Title="Order">
+        Title="Order"
+        ResizeMode="NoResize">
 
     <Window.Resources>
         
@@ -44,94 +45,35 @@
                        Width="40"
                        Margin="40,0,0,0"/>
         </Grid>
-        
+
         <Grid Grid.Row="1">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button x:Name="bestBtn"
-                        Style="{StaticResource RoundButton}"
-                        Margin="6,0,0,0"
-                        Click="bestBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\인기.png"
-                               Width="80"
-                               Margin="0,5,0,0"/>
-                        <TextBlock Text="인기"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,2,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="dosilakBtn"
-                        Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"
-                        Click="dosilakBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\도시락.png"
-                               Width="80"
-                               Margin="0,5,0,0"/>
-                        <TextBlock Text="도시락"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,2,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="cubbabBtn"
-                        Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"
-                        Click="cubbabBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\컵밥.png"
-                               Width="80"
-                               Margin="0,5,0,0"/>
-                        <TextBlock Text="컵밥"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,2,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="sidedishBtn"
-                        Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"
-                        Click="sidedishBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\반찬.png"
-                               Width="75"
-                               Margin="0,8,0,0"/>
-                        <TextBlock Text="반찬"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="sideBtn" 
-                        Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"
-                        Click="sideBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\사이드.png"
-                               Width="75"
-                               Margin="0,8,0,0"/>
-                        <TextBlock Text="사이드"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="drinkBtn"
-                        Style="{StaticResource RoundButton}"
-                        Margin="7,0,0,0"
-                        Click="drinkBtn_Click">
-                    <StackPanel>
-                        <Image Source="\Resource\음료.png"
-                               Width="75"
-                               Margin="0,8,0,0"/>
-                        <TextBlock Text="음료"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+            <ListView x:Name="lvCategory" 
+                      ItemsSource="{Binding Categories}" 
+                      SelectionChanged="lvCategory_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="5" Background="Yellow">
+                            <StackPanel Style="{StaticResource CategoryListStyle}" Height="114" Width="87">
+                                <Image Source="{Binding CategoryImageUrl}" Width="80" Margin="0,5,0,0"/>
+                                <TextBlock Text="{Binding CategoryName}" 
+                                       Margin="0,4,0,0" 
+                                       HorizontalAlignment="Center"
+                                       Foreground="Brown"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
 
         <Grid Grid.Row="2">
-            <ListView x:Name="list"
-                      ItemsSource="{Binding BestItems}"
-                      SelectionChanged="list_SelectionChanged"
+            <ListView x:Name="lvMenu"
+                      SelectionChanged="lvMenu_SelectionChanged"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       HorizontalAlignment="Center">
                 <ListView.ItemsPanel>
@@ -152,7 +94,7 @@
         </Grid>
 
         <Grid Grid.Row="3" Background="LightGray">
-            <ListView x:Name="shoppingList" ItemsSource="{Binding OrderedFoodItems}" Background="LightGray">
+            <ListView x:Name="lvShoppingList" ItemsSource="{Binding OrderedFoodItems}" Background="LightGray">
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>
@@ -166,15 +108,15 @@
                                 <DataTemplate>
                                     <Grid>
                                         <TextBlock Text="{Binding Count}"/>
-                                        <Button Content="+" x:Name="addBtn"
+                                        <Button Content="+" x:Name="btnAdd"
                                                 Style="{StaticResource CircleButton}"
                                                 Margin="60,0,0,0"
-                                                Click="addBtn_Click"/>
-                                        <Button Content="-" x:Name="subBtn"
+                                                Click="btnAdd_Click"/>
+                                        <Button Content="-" x:Name="btnSub"
                                                 Style="{StaticResource CircleButton}"
                                                 Margin="110,0,0,0"
                                                 Width="20"
-                                                Click="subBtn_Click"/>
+                                                Click="btnSub_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -184,10 +126,10 @@
                                 <DataTemplate>
                                     <Grid>
                                         <TextBlock Text="{Binding Price}"/>
-                                        <Button Content="X" x:Name="delBtn"
+                                        <Button Content="X" x:Name="btnDel"
                                                 Style="{StaticResource CircleButton}"
                                                 Margin="110,0,0,0"
-                                                Click="delBtn_Click"/>
+                                                Click="btnDel_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -210,7 +152,7 @@
             
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="0"
-                       x:Name="total"
+                       x:Name="tbTotal"
                        FontSize="25"
                        VerticalAlignment="Center"
                        Margin="120,0,0,0"/>
@@ -221,26 +163,22 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button x:Name="cancleBtn"
-                        Style="{StaticResource BasicButton}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Height="50"
-                        Width="150"
+                <Button x:Name="btnCancle"
+                        Style="{StaticResource OrderButtonStyle}"
                         Margin="260,0,0,0"
-                        Click="cancleBtn_Click">
+                        Click="btnCancle_Click">
                     <TextBlock Text="주문취소"
                                VerticalAlignment="Center"
                                FontSize="15"/>
                 </Button>
-                <Button x:Name="orderBtn"
-                        Style="{StaticResource BasicButton}"
+                <Button x:Name="btnOrder"
+                        Style="{StaticResource OrderButtonStyle}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Height="50"
                         Width="150"
                         Margin="10,0,0,0"
-                        Click="orderBtn_Click">
+                        Click="btnOrder_Click">
                     <TextBlock Text="주문완료"
                                VerticalAlignment="Center"
                                FontSize="15"/>

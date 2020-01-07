@@ -10,7 +10,8 @@
         Top="0"
         Height="830"
         Width="600"
-        Title="MainWindow">
+        Title="MainWindow"
+        ResizeMode="NoResize">
     <Grid>
         <Image x:Name="eventImg" Stretch="Fill"/>
 

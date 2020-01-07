@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hansot_Kiosk.Common;
+using Hansot_Kiosk.ViewModel;
 
 namespace Hansot_Kiosk
 {
@@ -20,66 +22,71 @@ namespace Hansot_Kiosk
     /// </summary>
     public partial class MainWindow : Window
     {
-        string[] images = new string[4];
-        int imagesIdx = 0;
+        private int imagesIdx = 0;
+        private PosterViewModel posterViewModel = new PosterViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
 
-            images[0] = "\\Resource\\한솥이벤트1.png";
-            images[1] = "\\Resource\\한솥이벤트2.jpg";
-            images[2] = "\\Resource\\한솥이벤트3.jpg";
-            images[3] = "\\Resource\\한솥이벤트4.jpg";
-            eventImg.Source = new BitmapImage(new Uri(@images[0], UriKind.Relative));
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            posterViewModel.LoadData();
+            ChangePoster(posterViewModel.PosterList[imagesIdx].ImageUrl);
         }
 
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
-            imagesIdx = changeButtonStyle(++imagesIdx);
-
-            eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
+            IncreaseImagesIdx();
+            ChangeButtonStyle();
+            ChangePoster(posterViewModel.PosterList[imagesIdx].ImageUrl);
         }
 
         private void beforeBtn_Click(object sender, RoutedEventArgs e)
         {
-            imagesIdx = changeButtonStyle(--imagesIdx);
-
-            eventImg.Source = new BitmapImage(new Uri(@images[imagesIdx], UriKind.Relative));
+            DecreaseImagesIdx();
+            ChangeButtonStyle();
+            ChangePoster(posterViewModel.PosterList[imagesIdx].ImageUrl);
         }
 
         private void orderBtn_Click(object sender, RoutedEventArgs e)
         {
-            switchScreen();
+            SwitchScreen();
         }
 
-        private int changeButtonStyle(int index)
+
+        private void IncreaseImagesIdx()
         {
-            if (index == 1)
+            if (++imagesIdx == 4)
             {
-                orderBtn.Style = Application.Current.Resources["ButtonIndex1"] as Style;
-                return 1;
-            }
-            else if (index == 2)
-            {
-                orderBtn.Style = Application.Current.Resources["ButtonIndex2"] as Style;
-                return 2;
-            }
-            else if (index == -1 || index == 3)
-            {
-                orderBtn.Style = Application.Current.Resources["BasicButton"] as Style;
-                return 3;
-            }
-            else
-            {
-                orderBtn.Style = Application.Current.Resources["ButtonIndex0"] as Style;
-                return 0;
+                imagesIdx = 0;
             }
         }
 
-        private void switchScreen()
+        private void DecreaseImagesIdx()
+        {
+            if (--imagesIdx == -1)
+            {
+                imagesIdx = 3;
+            }
+        }
+        private void ChangeButtonStyle()
+        {
+            orderBtn.Style = posterViewModel.PosterList[imagesIdx].BtnStyle;
+        }
+
+        private void ChangePoster(string image)
+        {
+            eventImg.Source = ComUtils.GetImage(image);
+        }
+
+        private void SwitchScreen()
         {
             new Order().Show();
             this.Close();
         }
+
     }   
 }

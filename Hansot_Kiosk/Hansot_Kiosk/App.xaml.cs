@@ -15,6 +15,6 @@ namespace Hansot_Kiosk
     /// </summary>
     public partial class App : Application
     {
-        public static MenuViewModel menuViewModel = new MenuViewModel();
+        
     }
 }

@@ -25,8 +25,8 @@
         <Setter Property="Width" Value="20"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="RoundButton">
-        <Setter Property="Template">
+    <Style TargetType="StackPanel" x:Key="CategoryListStyle">
+        <!--<Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" CornerRadius="5" Background="Yellow">
@@ -43,28 +43,9 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Foreground" Value="Brown"/>
-        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontSize" Value="15"/>-->
         <Setter Property="Height" Value="110"/>
         <Setter Property="Width" Value="90"/>
-    </Style>
-
-    <Style TargetType="Button" x:Key="BasicButton">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" CornerRadius="10" Background="DarkGray">
-                        <ContentPresenter HorizontalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border"
-                                    Property="Background"
-                                    Value="Gray"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="Button" x:Key="ButtonIndex0">
@@ -123,4 +104,31 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Button" x:Key="ButtonIndex3">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" CornerRadius="10" Background="DarkGray">
+                        <ContentPresenter HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border"
+                                    Property="Background"
+                                    Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="Button" BasedOn="{StaticResource ButtonIndex3}" x:Key="OrderButtonStyle">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="150"/>
+    </Style>
+    
 </ResourceDictionary>

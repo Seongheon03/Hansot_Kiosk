@@ -11,6 +11,8 @@ namespace Hansot_Kiosk.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Property
+
         private string _name;
         public string Name
         {
@@ -67,6 +69,9 @@ namespace Hansot_Kiosk.Model
             }
         }
 
+        public ECategory ECategory { get; set; }
+
+        #endregion
         public void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
